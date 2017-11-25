@@ -1,2 +1,11 @@
+# Main analysis requirements
+click==6.7
+en-core-web-sm==2.0.0
 jupyter==1.0.0
+scikit-learn==0.19.1
 spacy==2.0.3
+
+# Development requirements
+pipdeptree==0.10.1
+pylint==1.7.4
+
