@@ -1,0 +1,27 @@
+""" Utilities to create our bill corpus """
+from typing import List
+import spacy
+from nltk.stem.wordnet import WordNetLemmatizer
+
+NLP = spacy.load('en', disable=['parser', 'ner', 'textcat'])
+STEMMER = WordNetLemmatizer()
+
+
+def txt_to_token(data_file : str) -> List[str]:
+    """ Converts a plain txt file to a list of occurences: (<stem>, <count>)
+
+    Args:
+        data_file: Path to  plain txt file.
+    """
+    with open( data_file, 'r' ) as fhand:
+        doc = NLP( fhand.read() )
+
+        results = []
+        for token in doc:
+            # Ignore numbers, stop words, and punctuation
+            if not token.is_ascii or token.is_stop or token.is_punct:
+                continue
+
+            results.append( STEMMER.lemmatize( token.lower_ ) )
+
+        return results
