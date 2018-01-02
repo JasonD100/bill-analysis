@@ -13,6 +13,9 @@ def grab_text(root: ET.Element) -> str:
     for child in root.getchildren():
         text.append(grab_text(child))
 
+    if root.tail:
+        text.append( root.tail.strip() )
+
     return ' '.join(text)
 
 
@@ -24,11 +27,11 @@ def find_text_tags(root: ET.Element) -> List[str]:
     """
     text = []
     for child in root:
-        if child.getchildren():
-            text.extend( find_text_tags( child.getchildren() ) )
-
         if child.tag == 'text':
             text.append( grab_text( child ) )
+
+        if child.getchildren():
+            text.extend( find_text_tags( child.getchildren() ) )
 
     return text
 
