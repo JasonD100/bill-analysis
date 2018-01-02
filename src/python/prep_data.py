@@ -52,7 +52,7 @@ def main(data_folder=None):
 
             # Write the text content to a txt file.
             with open( output_file, 'w' ) as fhand:
-                fhand.write( text_content )
+                fhand.write( text_content.strip() )
 
     # Loop through each txt file and tokenize the plain text
     click.secho( f'Tokenizing plain txt files in "{txt_path}"', fg='green' )
