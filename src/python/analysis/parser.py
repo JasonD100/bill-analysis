@@ -10,7 +10,7 @@ def grab_text(root: ET.Element) -> str:
     if root.text:
         text.append( root.text.strip() )
 
-    for child in root.getchildren():
+    for child in list(root):
         text.append(grab_text(child))
 
     if root.tail:
@@ -30,8 +30,8 @@ def find_text_tags(root: ET.Element) -> List[str]:
         if child.tag == 'text':
             text.append( grab_text( child ) )
 
-        if child.getchildren():
-            text.extend( find_text_tags( child.getchildren() ) )
+        if list(child):
+            text.extend( find_text_tags( list(child) ) )
 
     return text
 

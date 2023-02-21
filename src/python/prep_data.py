@@ -22,7 +22,7 @@ def check_file( filename: str, ext: str ) -> str:
 
 @click.command()
 @click.argument('data_folder')
-def main(data_folder=None):
+def main(data_folder='data'):
     """ Setup intermediary data for analysis.
 
         1. Parse BILL xml data into plain txt and store results.

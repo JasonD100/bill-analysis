@@ -1,7 +1,7 @@
 .PHONY: dl-data notebook
 
-BILLSTAT_PATH := data/BILLSTATUS/xml
-BILLS_PATH := data/BILLS/xml
+BILLSTAT_PATH := /home/jasond/bill-analysis/data/BILLSTATUS/xml
+BILLS_PATH := /home/jasond/bill-analysis/data/BILLS/xml
 BULKDATA_BASE_URI := https://www.gpo.gov/fdsys/bulkdata
 
 
@@ -16,11 +16,11 @@ dl-data:
 	# Create directories
 	@mkdir -p $(BILLS_PATH) && mkdir -p $(BILLSTAT_PATH)
 	# Download zipped data files
-	wget $(BULKDATA_BASE_URI)/BILLSTATUS/115/s/BILLSTATUS-115-s.zip -O data/BILLSTATUS.zip
-	wget $(BULKDATA_BASE_URI)/BILLS/115/1/s/BILLS-115-1-s.zip -O data/BILLS.zip
+	wget $(BULKDATA_BASE_URI)/BILLSTATUS/117/s/BILLSTATUS-117-s.zip -O /home/jasond/bill-analysis/data/BILLSTATUS.zip
+	wget $(BULKDATA_BASE_URI)/BILLS/117/1/s/BILLS-117-1-s.zip -O /home/jasond/bill-analysis/data/BILLS.zip
 	# Unpack into data directory, updating existing files & creating new ones.
-	unzip data/BILLSTATUS.zip -u -d $(BILLSTAT_PATH)
-	unzip data/BILLS.zip -u -d $(BILLS_PATH)
+	unzip /home/jasond/bill-analysis/data/BILLSTATUS.zip -d $(BILLSTAT_PATH)
+	unzip /home/jasond/bill-analysis/data/BILLS.zip -d $(BILLS_PATH)
 
 
 # Startup local python notebook server

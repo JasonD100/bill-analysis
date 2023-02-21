@@ -2,7 +2,9 @@
 from typing import List
 import spacy
 
-NLP = spacy.load('en', disable=['parser', 'ner', 'textcat'])
+NLP = spacy.load('en_core_web_sm', disable=['parser', 'ner', 'textcat'])
+NLP.max_length = 3000000 #or any large value, as long as you don't run out of RAM
+
 
 def txt_to_token(txt : str) -> List[str]:
     """ Converts a plain txt file to a list of occurences: (<stem>, <count>)
